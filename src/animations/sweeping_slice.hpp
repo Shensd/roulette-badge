@@ -1,11 +1,11 @@
-#ifndef RAINBOW_SINGLE_HPP
-#define RAINBOW_SINGLE_HPP
+#ifndef SWEEPING_SLICE_HPP
+#define SWEEPING_SLICE_HPP
 
 #include <FastLED.h>
 #include "pins.hpp"
 #include "util.hpp"
 
-namespace rainbow_single {
+namespace sweeping_slice {
 
 void init();
 void animation(CRGB* leds);
@@ -13,4 +13,4 @@ void animation(CRGB* leds);
 }
 
 
-#endif // !RAINBOW_SINGLE_HPP
+#endif // !SWEEPING_SLICE_HPP

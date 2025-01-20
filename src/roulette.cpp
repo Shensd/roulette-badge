@@ -11,7 +11,6 @@ void run_roulette() {
     FastLED.show();
 
     delay(750);
-    // delay(100);
 
     int32_t delay_time = 10;
     int32_t initial_spin = 38 + random(10);
@@ -94,15 +93,6 @@ void run_roulette() {
 
     FastLED.clearData();
     leds[ball_index] = CRGB::White;
-    // times_pulled[ball_index]++;
-
-    // if(times_pulled[ball_index] <= 5) {
-    //     leds[ball_index] = CRGB::Green;
-    // }if(times_pulled[ball_index] > 5 && times_pulled[ball_index] <= 10) {
-    //     leds[ball_index] = CRGB::Blue;
-    // }if(times_pulled[ball_index] > 10) {
-    //     leds[ball_index] = CRGB::Red;
-    // }
     FastLED.show();
 
     delay(2000);

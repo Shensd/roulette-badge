@@ -3,6 +3,7 @@
 
 #include <FastLED.h>
 #include "pins.hpp"
+#include "util.hpp"
 
 namespace rainbow_random {
 
