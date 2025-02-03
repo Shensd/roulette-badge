@@ -16,6 +16,8 @@
 #include "animations/stacker.hpp"
 #include "animations/sweeping_slice.hpp"
 
+#include "game/quicktime.hpp"
+
 typedef void(*ANIMATION_INIT_FUNC)(void);
 ANIMATION_INIT_FUNC animation_inits[] = {
     rainbow::init,
@@ -23,9 +25,9 @@ ANIMATION_INIT_FUNC animation_inits[] = {
     rainbow_single::init,
     june_sparks::init,
     morse::init,
-    // rainbow_wheel::init,
+    rainbow_wheel::init,
     stacker::init,
-    sweeping_slice::init,
+    // sweeping_slice::init,
 };
 
 CRGB leds[NUM_LEDS];
@@ -48,6 +50,11 @@ void setup() {
 
     next_animation_switch = millis() + animation_time_ms;
 
+    if(digitalRead(SPIN_BUTTON_PIN) == LOW) {
+    // if(true) {
+        quicktime::run_game(leds);
+    }
+
     Serial.begin(115200);
 }
 
@@ -58,11 +65,11 @@ ANIMATION_FUNC animations[] = {
     rainbow::animation,
     rainbow_random::animation,
     rainbow_single::animation,
-    // rainbow_wheel::animation,
     june_sparks::animation,
     morse::animation,
+    rainbow_wheel::animation,
     stacker::animation,
-    sweeping_slice::animation,
+    // sweeping_slice::animation,
 };
 
 bool button_held = false;
@@ -107,7 +114,7 @@ void loop() {
         button_held = false;
 
         // if it's been less than 200ms since the last press, do animation config
-        if(millis() < (millis_let_go + 200) && millis() > millis_let_go) {
+        if(millis() < (millis_let_go + 300) && millis() > millis_let_go) {
             do_rotate = false;
             increment_animation();
 
