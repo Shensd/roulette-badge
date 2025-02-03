@@ -18,7 +18,7 @@ void animation(CRGB* leds) {
     millis_last_tick = millis();
 
     FastLED.clearData();
-    for(int i = 0; i < NUM_LEDS; i++) {
+    for(int i = 0; i < NUM_LEDS; i+=2) {
         leds[i] = util::index_to_color(((((i + rotation_offset) % NUM_LEDS) + 1) * color_step) + 255);
     }
     FastLED.show();

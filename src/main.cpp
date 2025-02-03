@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <FastLED.h>
+#include <avr/eeprom.h>
 #include "pins.hpp"
 
 #include "roulette.hpp"
@@ -27,7 +28,6 @@ ANIMATION_INIT_FUNC animation_inits[] = {
     morse::init,
     rainbow_wheel::init,
     stacker::init,
-    // sweeping_slice::init,
 };
 
 CRGB leds[NUM_LEDS];
@@ -35,6 +35,19 @@ CRGB leds[NUM_LEDS];
 uint32_t animation_time_ms = 10000;
 uint32_t next_animation_switch = 0;
 bool do_rotate = true;
+
+uint16_t animation_index = 0; 
+
+typedef void(*ANIMATION_FUNC)(CRGB*);
+ANIMATION_FUNC animations[] = {
+    rainbow::animation,
+    rainbow_random::animation,
+    rainbow_single::animation,
+    june_sparks::animation,
+    morse::animation,
+    stacker::animation,
+    rainbow_wheel::animation,
+};
 
 void setup() {
     randomSeed(analogRead(ENTROPY_1_PIN) ^ analogRead(ENTROPY_2_PIN) ^ analogRead(ENTROPY_3_PIN) ^ analogRead(ENTROPY_4_PIN));
@@ -48,29 +61,17 @@ void setup() {
 
     pinMode(SPIN_BUTTON_PIN, INPUT_PULLUP);
 
-    next_animation_switch = millis() + animation_time_ms;
+    Serial.begin(115200);
 
     if(digitalRead(SPIN_BUTTON_PIN) == LOW) {
     // if(true) {
         quicktime::run_game(leds);
     }
 
-    Serial.begin(115200);
+    animation_index = 0;
+
+    next_animation_switch = millis() + animation_time_ms;
 }
-
-typedef void(*ANIMATION_FUNC)(CRGB*);
-
-uint16_t animation_index = 0; 
-ANIMATION_FUNC animations[] = {
-    rainbow::animation,
-    rainbow_random::animation,
-    rainbow_single::animation,
-    june_sparks::animation,
-    morse::animation,
-    rainbow_wheel::animation,
-    stacker::animation,
-    // sweeping_slice::animation,
-};
 
 bool button_held = false;
 // in millis this is equal to 277 hours, I think that's good enough

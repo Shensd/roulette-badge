@@ -4,6 +4,7 @@
 #include <FastLED.h>
 #include "pins.hpp"
 #include "util.hpp"
+#include "animations/rainbow_wheel.hpp"
 
 namespace quicktime {
 

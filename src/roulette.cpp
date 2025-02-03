@@ -95,5 +95,5 @@ void run_roulette() {
     leds[ball_index] = CRGB::White;
     FastLED.show();
 
-    delay(2000);
+    delay(750);
 }
