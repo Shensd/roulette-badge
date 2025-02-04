@@ -2,9 +2,9 @@
 
 This repo contains the firmware for a badge I designed and sold at WWHF Mile High 2025. It turned out pretty sick and I'm very proud of the project :)
 
-<center>
-<img src="res/badge.jpg" width="60%" alt="Image of badge"/>
-</center>
+<p align="center">
+    <img src="res/badge.jpg" width="60%" alt="Image of badge"/>
+</p>
 
 ## Usage
 
