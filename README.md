@@ -30,7 +30,7 @@ This section reiterates information found in an insert given to purchasers the b
 
 ### Other Info
 
-* Badge takes 3xAAA Batteries for power
+* Badge takes 3xAA Batteries for power
 
 * Before first use, remove paper insert from battery pack
 
